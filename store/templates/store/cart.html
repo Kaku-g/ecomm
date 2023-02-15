@@ -1,0 +1,62 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="row ">
+    <div class=" col col-lg-12 shadow p-3 bg-white rounded">
+        <div class="box-element ">
+              <a href="{% url 'store' %}" class="btn btn-outline-dark">&#x2190; Continue Shopping</a>
+        </div>
+        <br>
+        <br>
+        <table class="table">
+            <tr>
+                <th><h5>Items:<strong>{{order.get_items}}</strong></h5></th>
+                <th><h5>Total:<strong>₹{{order.get_totals}}</strong></h5></th>
+                <th><a style="float:right; margin:5px;" href="address" class="btn btn-success">Checkout</a></th>
+            </tr>
+        </table>
+
+    </div>
+</div>
+        <div class=" col col-lg-12 box-element shadow p-3 bg-white rounded my-4 ">
+          
+            <div class="row " id="rows" >
+                <div class="col col-sm-3" style="flex:2"></div>
+                <div class="col col-sm-3" style="flex:2"><strong>Item</strong></div>
+                <div class="col col-sm-3" style="flex:1"><strong>Price</strong></div>
+                <div class="col col-sm-3" style="flex:1"><strong>Quantity</strong></div>
+                <div class="col col-sm-3" style="flex:1"><strong>Total</strong></div>
+            </div>
+            {% for cart in carts %}
+            <div class="row my-4 " id="rows">
+               
+                <div class="col col-sm-3" style="flex:2"><img id="cart-image" src="{{cart.item.img.url}}" alt=""></div>
+                <div class="col col-sm-3" style="flex:2"><p>{{cart.item.heading}}</p></div>
+                <div class="col col-sm-3" style="flex:1"><p>₹{{cart.item.price}}</p></div>
+                <div class="col col-sm-3" style="flex:1">{{cart.quantity}}
+                  <a href="/cart/{{cart.item.slug}}" ><img src="{% static 'images/arrow-up.png' %}" alt="" class="chg-quantity"></a>
+                  <a href="/removeitem/{{cart.item.slug}}" ><img src="{% static 'images/arrow-down.png' %}" alt="" class="chg-quantity"></a>
+                  
+            </div>
+                <div class="col col-sm-3" style="flex:1"><p>₹{{cart.get_total}}</p></div>
+            </div>
+            {% endfor %}
+
+                
+                
+</div>
+
+<script>
+
+   
+
+</script>
+    
+
+
+{% endblock content %}
+
+
+
+
+

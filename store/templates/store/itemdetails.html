@@ -1,0 +1,29 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+<div class="jumbotron row" style="background-color:#F8F7FF;">
+  <div class="col lg-6">
+    <h3 class="display-4 text-center">{{context.heading}}</h3>
+    <img src="{{context.img.url}}" class="lead my-2 mx-5 px-5 rounded" alt="...">
+    </div>
+ <div class="col lg-6">
+
+    <p>{{context.description}}</p>
+    <p><strong>Price:</strong>₹{{context.price}}</p>
+    <a href="/cart/{{context.slug}}" class="btn btn-outline-success btn-md">Add To Cart</a>
+
+      <a href="/qcheckout/{{context.slug}}" class="btn btn-primary btn-md"  >Buy Now</a>
+      </div>
+
+
+  </div>
+
+
+
+
+{% endblock content %}

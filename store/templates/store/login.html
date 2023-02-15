@@ -1,0 +1,37 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<form action="login" method="POST">
+  {% csrf_token %}
+
+    <div class="form-group">
+      <label for="Email">Email address</label>
+      <input name="email" type="email" class="form-control"  aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="Password">Password</label>
+      <input name="pwd" type="password" class="form-control" >
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+<h4>New here?  <a href="register">Signup</a></h4>
+
+  <div class="container">
+      {% for message in messages %}
+      <h2>{{message}}</h2>
+      {% endfor %}
+  </div>
+
+
+
+
+
+
+
+{% endblock content %}

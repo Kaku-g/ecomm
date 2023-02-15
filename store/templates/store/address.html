@@ -1,0 +1,72 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add address</title>
+</head>
+<body>
+    <div class="row shadow p-3 mb-5 bg-white rounded ">
+        <div class="col col-lg-12">
+            <div class="box-element" id="form-wrapper">
+                <form id="form" action="address" method="POST">
+                    {% csrf_token %}
+                    <div id="user-info ">
+                        <div class="row">
+                            <div class="col">
+                        <div class="form-field">
+                            <input required class="form-control" type="text" value={{user.first_name}} placeholder="Name..." name="name">
+                        </div>
+                    </div>
+                    <div class="col">
+                 <div class="form-field">
+                            <input required class="form-control" type="text" placeholder="Email..."  name="email">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                    <div  id="shipping-info ">
+                        <hr>
+                        Shipping Info:
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                        <div class="form-field">
+                            <input required class="form-control" type="text" placeholder="Address..."  name="address">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-field">
+                            <input required class="form-control" type="text" placeholder="City..." name="city">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col">
+                        <div class="form-field">
+                            <input required class="form-control" type="text" placeholder="ZipCode..."  name="zipcode">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-field">
+                            <input required class="form-control" type="text" placeholder="State..." name="state">
+                        </div>
+                    </div>
+                    </div>
+                        <div class="form-field my-2">
+                            <input required class="form-control" type="text" placeholder="Country..."  name="country">
+                        </div>
+
+                    </div>
+                    <input id="form-button" type="submit"  class="btn btn-success btn-block my-2 " value="continue">
+                </form>
+
+            </div>
+        </div>
+
+</body>
+</html>
+{% endblock content %}
