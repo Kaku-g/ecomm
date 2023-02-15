@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h3 class="display-4 text-center">Payment succesfull</h3>
+            <h2>Redirecting to store in <span id="time">6</span>  seconds</h2>
+            </div>
+    </div>
+    <script>
+    let timeDisplay = document.getElementById('time');
+        function redirect(){
+           window.location.href = 'store';
+        }
+        let t = 6;
+
+        function time(){
+
+           t--;
+           timeDisplay.innerHTML= t;
+        }
+        setInterval(time,1000);
+        setTimeout(redirect, 6000); //2000 is equivalent to 2 seconds
+    </script>
+</body>
+</html>

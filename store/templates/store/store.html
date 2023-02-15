@@ -1,0 +1,88 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<style>
+  #cart:hover{
+
+
+    
+    
+  }
+  #view:hover{
+    
+    
+   
+  }
+
+</style>
+    <div class="row">
+      {% for item in context %}
+      <div class=" col col-lg-4 my-2">
+
+        <div class="card shadow p-3 mb-5  rounded   " style="width: 18rem; background-color:#ffffff;">
+          {% if item.offer%}
+
+          <div class="alert alert-success " style="background:#C96480; color:white;" role="alert">
+            Offer   
+           </div>
+           {% endif %}
+            <img src="{{item.img.url}}" class="card-img-top border" style="border:2px solid pink; border-radius:5px; " alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{item.heading}}</h5>
+              <a href="cart/{{item.slug}}" id="cart"  class="btn btn-outline btn-sm" style="border: 1px solid #ffafcc; color:#ffafcc;">Add To Cart</a>
+              <a href="items/{{item.slug}}" id="view" class="btn btn-outline btn-sm" style="border: 1px solid #a2d2ff; color:#a2d2ff">View</a>&nbsp  <strong> ₹{{item.price}}</strong>
+
+            </div>
+          </div>
+
+      </div>
+      {% endfor %}
+      {% for message in messages %}
+      <h2>{{message}}</h2>
+      {% endfor %}
+
+      </div>
+      <script>
+        /*
+         data-id={{item.id}} data-name={{item.item_shortname}} onclick="cartUpdate(this.getAttribute('data-name'))"
+        let itemIds=[];
+        let cartCount=0;
+           //let cart;
+        if(localStorage.getItem('cartItems')){
+          cartItems =JSON.parse(localStorage.getItem('cartItems'));
+
+        }
+
+        else{
+          cartItems={};
+        }
+        function cartUpdate(sn)
+        { console.log(sn);
+           if(cartItems[sn]!=undefined){
+             cartItems[sn]+=1;
+           }
+
+           else{
+             cartItems[sn]=1;
+           }
+          localStorage.setItem('cartItems',JSON.stringify(cartItems));
+          console.log(cartItems);
+          window.location.reload();
+
+          }
+
+
+
+
+
+
+
+
+
+
+*/
+
+      </script>
+
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+body{
+   background-color:white;
+}
+#cart-icon{
+    width:30px;
+    height:30px;
+}
+
+/*
+
+for cart page before checkout
+*/
+.chg-quantity{
+    width:10px;
+    height:10px;
+    margin-top:2px;
+    margin-bottom:4px;
+}
+
+#cart-image{
+    width:90px;
+    height:50px;
+}
+#cart-quant-icon{
+    display:flex;
+    flex-flow:column;
+    
+    
+}
+
+#cart-quant{
+    display:flex;
+    flex-flow:row;
+
+}
+#rows{
+    margin-top:4px;
+    margin-bottom:4px;
+}
+
+/*
+
+for checkout page
+*/
+.payment_image{
+    width:100px;
+    width:70px;
+}

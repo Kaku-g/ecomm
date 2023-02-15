@@ -1,0 +1,150 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+{% load cart_tag %}
+<div class="row shadow p-3 mb-5 bg-white rounded ">
+    <div class="col col-lg-6">
+        <div class="box-element" id="form-wrapper">
+            <form id="form" action="/payment_gateway" method="POST">
+                {% csrf_token %}
+                <div id="user-info ">
+                    <div class="row">
+                        <div class="col">
+                    <div class="form-field">
+                        <input required class="form-control" id="name" type="text" value={{user.first_name}} placeholder="Name..." name="name">  
+                    </div>
+                </div>
+                <div class="col">
+             <div class="form-field">
+                        <input required class="form-control" id="email" type="text" placeholder="Email..." value={{add.email}} name="email">
+                    </div>
+                </div>
+                </div>
+            </div>
+                <div  id="shipping-info ">
+                    <hr>
+                    Shipping Info:
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                    <div class="form-field">
+                        <input required class="form-control" id="address" type="text" placeholder="Address..." value={{add.address}} name="address">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-field">
+                        <input required class="form-control" id="city" type="text" placeholder="City..." value={{add.city}} name="city">
+                    </div>
+                </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col">
+                    <div class="form-field">
+                        <input required class="form-control" id="zipcode" type="text" placeholder="ZipCode..." value={{add.zipcode}} name="zipcode">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-field">
+                        <input required class="form-control" id="state" type="text" placeholder="State..." value={{add.state}} name="state">
+                    </div>
+                </div>
+                </div>
+                    <div class="form-field my-2">
+                        <input required class="form-control" id="country" type="text" placeholder="Country..." value={{add.country}} name="country">
+                    </div>
+
+                </div>
+                <input id="form-button" onclick="payment_gateway()"  class="btn btn-success btn-block my-2 " value="continue" editable="none">
+            </form>
+
+        </div>
+    </div>
+    <div class="col col-lg-6">
+        <div class="box-element">
+<a href="{%  url 'cart' %}" class="btn btn-outline-dark">&#x2190 Back To Cart</a>
+<hr>
+<h3>Order Summary</h3>
+<hr>
+{% for cart in carts %}
+<div class="row">
+    <div class="col col-sm-3" style="flex:2"><img id="cart-image" src="{{cart.item.img.url}}" alt=""></div>
+    <div class="col col-sm-3" style="flex:2"><p>{{cart.item.heading}}</p></div>
+    <div class="col col-sm-3" style="flex:1"><p>Rs {{cart.item.price}}</p></div>
+    <div class="col col-sm-3" style="flex:1"><p>{{cart.quantity}}</p></div>
+</div>
+{% endfor %}
+
+<h5 class="my-4 text-center">Items: {{ request.user| cart_total }}    </h5>
+<h5 class="my-1 text-center">Total: Rs {{order.get_totals}}</h5>
+        </div>
+    </div>
+
+</div>
+<div class="row shadow p-3 mb-5 bg-white rounded">
+    <div class="col col-lg-6">
+        <div class="box-element" id="form-wrapper">
+           <strong>Payment Options</strong>
+        </div>
+        <br>
+        <div class="box-element hidden" id="payment-info">
+            
+            <input type="radio" name="payment" value="paytm" onclick="payment_option()">Paytm <br><br>
+            <div id="p2" hidden="true" class="my-2">
+                <strong>Enter paytm no:</strong><input class="form-control" id="paytm_no" type="text">
+                <strong>Enter pwd:</strong><input class="form-control" id="paytm_pwd" type="password">
+            </div>
+            <input type="radio" name="payment" value="DC" onclick="payment_option()">Debit/Credit Card <br><br>
+            <input type="radio" name="payment" value="NB" onclick="payment_option()">Net Banking <br>
+        </div>
+        
+    </div>
+    <div class="col col-lg-6">
+        <div class="box-content">
+            <img src="{% static 'images/paytm.jpg' %}"  class="payment_image" alt="">
+        </div>
+    </div>
+</div>
+<script>
+    let payment = document.getElementsByName('payment');
+    let p2= document.getElementById('p2');
+    let form = document.getElementById('form');
+    let name= document.getElementById('name');    
+    let address= document.getElementById('address');
+    let city= document.getElementById('city');
+    let zipcode= document.getElementById('zipcode');
+    let email= document.getElementById('email');
+    let paytm_no= document.getElementById('paytm_no')
+    let paytm_pwd = document.getElementById('paytm_pwd');
+    function payment_option(){
+    if(payment[0].checked){
+        //alert(payment[0].value);
+        p2.hidden?'false':'true';
+
+    }
+    if(payment[1].checked){
+        //alert(payment[1].value);
+    }
+    if(payment[2].checked){
+       // alert(payment[2].value);
+    }
+}
+
+ function payment_gateway(){
+     if(name.value && address.value && city.value && zipcode.value && email.value){
+         console.log(name,address,city,zipcode,email);
+         if((payment[0].checked)||(payment[1].checked)||(payment[2].checked)){
+             
+         form.submit();
+         }
+     }
+     else{
+        console.log(name,address,city,zipcode,email);
+         alert('fill all details');
+     }
+ }
+
+
+
+</script>
+{% endblock content %}
+
